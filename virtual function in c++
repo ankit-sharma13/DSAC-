@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+
+class isvirtual
+{
+public:
+    int x, y, z;
+
+    virtual void display()  // Virtual function
+    {
+        cout << "Base class is called ";
+    }
+
+    virtual void print()  // Make print() virtual so it can be called via base class pointer
+    {
+        cout << "Base class print() is called";
+    }
+};
+
+class nm : public isvirtual
+{
+public:
+    void display() override  // Override display() in the derived class
+    {
+        cout << "Derived class is called";
+    }
+
+    void print() override  // Override print() in the derived class
+    {
+        cout << "Derived class print() is called";
+    }
+};
+
+int main()
+{
+    isvirtual *Isvirtual;
+    nm klm;
+    Isvirtual = &klm;
+
+    Isvirtual->display();  // Calls the overridden display() in the derived class
+    cout << endl;
+
+    Isvirtual->print();  // Calls the overridden print() in the derived class
+    return 0;
+}
