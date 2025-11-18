@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+class student{
+    public:
+    string name;
+    int rollno;
+    void display()
+    {
+        cout<<"Name:"<<name<<",Rollno:"<<rollno<<endl;
+    }
+};
+int main()
+{
+    student stu[3];
+    stu[0].name="Ankit";
+    stu[0].rollno=16;
+    stu[1].name="Anushka";
+    stu[1].rollno=15;
+    stu[2].name="Ananya";
+    stu[2].rollno=9;
+    //displaying the elements
+    for(int i=0;i<3;i++)
+    {
+        stu[i].display();
+    }
+    return 0;
+}
