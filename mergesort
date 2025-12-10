@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+int arr[100];
+void merge(int beg, int mid, int end) {
+    int i = beg;
+    int j = mid + 1;
+    int index = 0;
+    int temp[100];
+
+    while (i <= mid && j <= end) {
+        if (arr[i] < arr[j]) {
+            temp[index] = arr[i];
+            i++;
+        } else {
+            temp[index] = arr[j];
+            j++;
+        }
+        index++;
+    }
+    while (i <= mid) {
+        temp[index] = arr[i];
+        index++;
+        i++;
+    }
+    while (j <= end) {
+        temp[index] = arr[j];
+        index++;
+        j++;
+    }
+    for (int k = 0; k < index; k++) { 
+        arr[beg + k] = temp[k];
+    }
+}
+void mergesort(int start, int finish) {
+    if (start < finish) {
+        int mid = start + (finish - start) / 2;
+        mergesort(start, mid);
+        mergesort(mid + 1, finish);
+        merge(start, mid, finish);
+    }
+}
+
+int main() {
+    int input_data[] = {23, 89, 43, 8, 2, 231, 90, 12, 18, 18};
+    int arr_size = sizeof(input_data) / sizeof(input_data[0]);
+
+    for(int s = 0; s < arr_size; s++){
+        arr[s] = input_data[s];
+    }
+    cout << "Original array: ";
+    for(int s = 0; s < arr_size; s++){
+        cout << arr[s] << " ";
+    }
+    cout << endl;
+
+    mergesort(0, arr_size - 1);
+
+    cout << "Sorted array: ";
+    for(int s = 0; s < arr_size; s++){
+        cout << arr[s] << " ";
+    }
+    cout << endl;
+    return 0;
+}
